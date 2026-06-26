@@ -104,16 +104,18 @@
     border-color: rgba(59,130,246,0.25);
   }
 
-  body.light .text-slate-100 { color: #0f172a !important; }
-  body.light .text-slate-200 { color: #1e293b !important; }
-  body.light .text-slate-300 { color: #334155 !important; }
-  body.light h1, body.light h2, body.light h3 { color: #0f172a !important; }
-  body.light p { color: #334155; }
-  body.light .text-slate-300 { color: #334155 !important; }
-  body.light .text-slate-400 { color: #475569 !important; }
-  body.light .text-slate-500 { color: #64748b !important; }
-  body.light .text-slate-600 { color: #64748b !important; }
-  body.light .text-white { color: #0f172a !important; }
+  /* --- Cleaned Light Mode Text Overrides --- */
+body.light h1, body.light h2, body.light h3 { color: #0f172a !important; }
+body.light p { color: #334155; }
+
+/* Using attribute selectors stops Tailwind from hitting a circular loop */
+body.light [class*="text-slate-100"] { color: #0f172a !important; }
+body.light [class*="text-slate-200"] { color: #1e293b !important; }
+body.light [class*="text-slate-300"] { color: #334155 !important; }
+body.light [class*="text-slate-400"] { color: #475569 !important; }
+body.light [class*="text-slate-500"] { color: #64748b !important; }
+body.light [class*="text-slate-600"] { color: #64748b !important; }
+body.light [class*="text-white"] { color: #0f172a !important; }
   body.light .border-dark-500\/50 { border-color: #e2e8f0 !important; }
   body.light .bg-dark-600 { background-color: #f1f5f9 !important; }
   body.light .bg-dark-700 { background-color: #ffffff !important; }
