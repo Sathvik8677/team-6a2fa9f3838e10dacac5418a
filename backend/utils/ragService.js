@@ -110,13 +110,48 @@ RESPONSE FORMAT:
 - Follow-ups: "You might also want to know: ..."`;
 }
 
+// Extract a searchable text query from an image and user description
+async function extractQueryFromImage(image, userDescription) {
+  const ai = getGenAI();
+  if (!ai) return userDescription || "problem shown in the image";
+  try {
+    const model = ai.getGenerativeModel({ model: 'gemini-flash-latest' });
+    const prompt = `Analyze this image and description of an internship issue. 
+User description: "${userDescription || 'Not provided'}"
+
+Generate a search query of 1-3 sentences describing the exact error, technical issue, system state, or question shown in the image. Use specific terms where applicable (e.g. NOC, ViBe, Rosetta, offer letter, etc.).
+Return ONLY the search query, nothing else.`;
+
+    const result = await model.generateContent([
+      prompt,
+      {
+        inlineData: {
+          data: image.data,
+          mimeType: image.mimeType
+        }
+      }
+    ]);
+    return result.response.text().trim();
+  } catch (err) {
+    console.error("Failed to extract query from image:", err);
+    return userDescription || "problem shown in the image";
+  }
+}
+
 // Main RAG query function
 async function processRAGQuery(question, options = {}) {
-  const { explainMode = 'intermediate', userId = null, queryId = null } = options;
+  const { explainMode = 'intermediate', userId = null, queryId = null, image = null } = options;
 
   try {
+    let searchQuestion = question;
+    if (image && image.data) {
+      const extractedQuery = await extractQueryFromImage(image, question);
+      searchQuestion = question ? `${question} ${extractedQuery}` : extractedQuery;
+      console.log('📷 Image query extracted:', extractedQuery);
+    }
+
     // Step 1: Retrieve relevant FAQs
-    const scoredFAQs = await retrieveRelevantFAQs(question, 5);
+    const scoredFAQs = await retrieveRelevantFAQs(searchQuestion || "problem shown in the image", 5);
 
     // Step 2: Calculate confidence
     const confidence = calculateConfidence(scoredFAQs);
@@ -148,7 +183,7 @@ async function processRAGQuery(question, options = {}) {
 FAQ CONTEXT (use ONLY this to answer):
 ${faqContext}
 
-Student question: "${question}"
+Student question/description: "${question || 'Please see the attached image.'}"
 
 ${escalationRequired ? 'NOTE: Confidence is low. Acknowledge limitations and recommend escalation.' : ''}
 
@@ -159,7 +194,20 @@ Respond with a JSON object:
   "escalationMessage": "reason for escalation if needed or null"
 }`;
 
-        const result = await model.generateContent(prompt);
+        let result;
+        if (image && image.data) {
+          result = await model.generateContent([
+            prompt,
+            {
+              inlineData: {
+                data: image.data,
+                mimeType: image.mimeType
+              }
+            }
+          ]);
+        } else {
+          result = await model.generateContent(prompt);
+        }
         const text = result.response.text();
 
         // Parse JSON response
