@@ -103,7 +103,7 @@ export function Login() {
 }
 
 export function Signup() {
-  const [form, setForm] = useState({ name: '', email: '', password: '', college: '', role: 'student' })
+  const [form, setForm] = useState({ name: '', email: '', password: '', college: '' })
   const [show, setShow] = useState(false)
   const { signup, isLoading } = useAuthStore()
   const [localError, setLocalError] = useState('')
@@ -161,14 +161,6 @@ export function Signup() {
           <label className="text-sm text-slate-400 mb-1.5 block">College</label>
           <input type="text" value={form.college} onChange={e => setForm(f => ({ ...f, college: e.target.value }))}
             className="input-dark" placeholder="Your college name" />
-        </div>
-        <div>
-          <label className="text-sm text-slate-400 mb-1.5 block">Role</label>
-          <select value={form.role} onChange={e => setForm(f => ({ ...f, role: e.target.value }))}
-            className="input-dark">
-            <option value="student">Student / Intern</option>
-            <option value="mentor">Mentor</option>
-          </select>
         </div>
         <div>
           <label className="text-sm text-slate-400 mb-1.5 block">Password</label>

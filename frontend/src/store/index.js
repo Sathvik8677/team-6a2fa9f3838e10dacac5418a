@@ -74,11 +74,12 @@ export const useThemeStore = create(
       toggleTheme: () => {
         const next = get().theme === 'dark' ? 'light' : 'dark';
         set({ theme: next });
-        document.body.classList.toggle('light', next === 'light');
+        // Toggle .dark class for Tailwind dark: variant support
+        document.body.classList.toggle('dark', next === 'dark');
       },
       initTheme: () => {
         const { theme } = get();
-        document.body.classList.toggle('light', theme === 'light');
+        document.body.classList.toggle('dark', theme === 'dark');
       }
     }),
     { name: 'vins-theme' }

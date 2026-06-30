@@ -2,6 +2,7 @@ import { Routes, Route, Navigate, useNavigate } from 'react-router-dom'
 import { useEffect } from 'react'
 import { useAuthStore } from './store'
 import Layout from './components/layout/Layout'
+import AdminLayout from './components/admin/AdminLayout'
 import Landing from './pages/Landing'
 import Login from './pages/Login'
 import Signup from './pages/Signup'
@@ -15,10 +16,30 @@ import Announcements from './pages/Announcements'
 import Profile from './pages/Profile'
 import Settings from './pages/Settings'
 import FAQBrowser from './pages/FAQBrowser'
+import AdminDashboard from './pages/admin/AdminDashboard'
+import AdminUsers from './pages/admin/AdminUsers'
+import AdminAnnouncements from './pages/admin/AdminAnnouncements'
+import AdminFAQs from './pages/admin/AdminFAQs'
+import AdminEscalations from './pages/admin/AdminEscalations'
 
 function ProtectedRoute({ children }) {
   const token = useAuthStore(state => state.token)
   return token ? children : <Navigate to="/login" replace />
+}
+
+function AdminRoute({ children }) {
+  const { user, token } = useAuthStore()
+  const navigate = useNavigate()
+
+  useEffect(() => {
+    if (token && user && user.role !== 'admin') {
+      navigate('/home', { replace: true })
+    }
+  }, [user, token, navigate])
+
+  if (!token) return <Navigate to="/login" replace />
+  if (user && user.role !== 'admin') return <Navigate to="/home" replace />
+  return children
 }
 
 function PublicRoute({ children }) {
@@ -30,24 +51,24 @@ export default function App() {
   return (
     <Routes>
       <Route path="/" element={<Landing />} />
-      <Route 
-        path="/login" 
+      <Route
+        path="/login"
         element={
           <PublicRoute>
             <Login />
           </PublicRoute>
-        } 
+        }
       />
-      <Route 
-        path="/signup" 
+      <Route
+        path="/signup"
         element={
           <PublicRoute>
             <Signup />
           </PublicRoute>
-        } 
+        }
       />
-      <Route 
-        path="/" 
+      <Route
+        path="/"
         element={
           <ProtectedRoute>
             <Layout />
@@ -65,6 +86,23 @@ export default function App() {
         <Route path="settings" element={<Settings />} />
         <Route path="faq" element={<FAQBrowser />} />
       </Route>
+
+      {/* Admin Routes */}
+      <Route
+        path="/admin"
+        element={
+          <AdminRoute>
+            <AdminLayout />
+          </AdminRoute>
+        }
+      >
+        <Route index element={<AdminDashboard />} />
+        <Route path="users" element={<AdminUsers />} />
+        <Route path="announcements" element={<AdminAnnouncements />} />
+        <Route path="faqs" element={<AdminFAQs />} />
+        <Route path="escalations" element={<AdminEscalations />} />
+      </Route>
+
       <Route path="*" element={<Navigate to="/" replace />} />
     </Routes>
   )

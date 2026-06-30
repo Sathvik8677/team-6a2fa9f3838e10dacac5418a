@@ -16,6 +16,7 @@ const navItems = [
   { to: '/faq', icon: BookOpen, label: 'FAQ Browser', desc: 'Browse knowledge base' },
   { to: '/analytics', icon: BarChart3, label: 'Analytics', desc: 'Confusion insights' },
   { to: '/announcements', icon: Bell, label: 'Announcements', desc: 'Important notices' },
+  ...(user?.role === 'admin' ? [{ to: '/admin', icon: Shield, label: 'Admin Panel', desc: 'Manage platform' }] : []),
 ]
 
 const bottomItems = [
