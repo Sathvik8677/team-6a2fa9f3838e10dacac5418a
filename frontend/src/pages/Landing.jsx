@@ -53,7 +53,7 @@ export default function Landing() {
               <Sparkles size={14} />
               Vicharanashala × IIT Ropar · Summership 2026
             </div>
-            <h1 className="text-5xl md:text-7xl font-bold text-white dark:text-slate-900 mb-6 leading-tight tracking-tight">
+            <h1 className="text-5xl md:text-7xl font-bold dark:text-white text-slate-900 mb-6 leading-tight tracking-tight">
               AI-Powered{' '}
               <span className="gradient-text">Internship</span>
               <br />Intelligence Platform
@@ -87,7 +87,7 @@ export default function Landing() {
       <section className="py-20 px-6">
         <div className="max-w-5xl mx-auto">
           <div className="text-center mb-14">
-            <h2 className="text-3xl font-bold text-white dark:text-slate-900 mb-4">Not a chatbot. An intelligence ecosystem.</h2>
+            <h2 className="text-3xl font-bold dark:text-white text-slate-900 mb-4">Not a chatbot. An intelligence ecosystem.</h2>
             <p className="text-slate-400 max-w-xl mx-auto">Every answer is retrieved from real FAQ data before Gemini generates a response. No guessing. No hallucinations.</p>
           </div>
           <div className="grid md:grid-cols-2 gap-5">
@@ -112,7 +112,7 @@ export default function Landing() {
       {/* RAG Flow */}
       <section className="py-20 px-6 bg-dark-800/50 dark:bg-slate-100">
         <div className="max-w-3xl mx-auto text-center">
-          <h2 className="text-3xl font-bold text-white dark:text-slate-900 mb-4">How the RAG pipeline works</h2>
+          <h2 className="text-3xl font-bold dark:text-white text-slate-900 mb-4">How the RAG pipeline works</h2>
           <p className="text-slate-400 dark:text-slate-600 mb-12">Your question → FAQ retrieval → Gemini generation → Confident answer</p>
           <div className="flex flex-col gap-2">
             {[
@@ -127,7 +127,7 @@ export default function Landing() {
                 className="flex items-center gap-5 card-dark rounded-xl p-4 text-left">
                 <div className="text-2xl font-bold font-mono text-blue-500/40 flex-shrink-0 w-10">{item.step}</div>
                 <div>
-                  <div className="text-white dark:text-slate-900 font-medium">{item.title}</div>
+                  <div className="dark:text-white text-slate-900 font-medium">{item.title}</div>
                   <div className="text-slate-500 dark:text-slate-600 text-sm">{item.sub}</div>
                 </div>
               </motion.div>
@@ -144,7 +144,7 @@ export default function Landing() {
             <Users size={20} className="text-slate-500" />
             <span className="text-slate-500 dark:text-slate-600">500+ interns already using VINS</span>
           </div>
-          <h2 className="text-4xl font-bold text-white dark:text-slate-900 mb-6">Ready to get clear answers?</h2>
+          <h2 className="text-4xl font-bold dark:text-white text-slate-900 mb-6">Ready to get clear answers?</h2>
           <p className="text-slate-400 dark:text-slate-600 mb-8">Join the platform that understands internship workflows, not just keywords.</p>
           <Link to="/signup" className="btn-primary inline-flex items-center gap-2 text-base px-10 py-4">
             Get Started Free <ArrowRight size={18} />

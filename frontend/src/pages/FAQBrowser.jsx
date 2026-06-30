@@ -27,7 +27,7 @@ function FAQItem({ faq }) {
               'bg-slate-500/10 text-slate-400 dark:text-slate-400 text-slate-600 border-slate-500/20'
             }`}>{faq.importance}</span>
           </div>
-          <p className="text-sm font-medium text-slate-200 dark:text-slate-200 text-slate-700">{faq.question}</p>
+          <p className="text-sm font-medium dark:text-slate-200 text-slate-700">{faq.question}</p>
         </div>
         <div className="flex items-center gap-2 flex-shrink-0">
           <span className="text-xs text-slate-600 dark:text-slate-600 text-slate-500">{faq.usageCount} uses</span>
@@ -37,7 +37,7 @@ function FAQItem({ faq }) {
       {open && (
         <motion.div initial={{ height: 0 }} animate={{ height: 'auto' }}
           className="border-t border-dark-500/50 px-4 py-4">
-          <p className="text-sm text-slate-300 dark:text-slate-300 text-slate-700 leading-relaxed whitespace-pre-wrap">{faq.answer}</p>
+          <p className="text-sm dark:text-slate-300 text-slate-700 leading-relaxed whitespace-pre-wrap">{faq.answer}</p>
           {faq.tags?.length > 0 && (
             <div className="flex flex-wrap gap-1.5 mt-3">
               {faq.tags.map(t => <span key={t} className="text-xs text-slate-600 dark:text-slate-600 text-slate-500 bg-dark-600 px-2 py-0.5 rounded-full">{t}</span>)}

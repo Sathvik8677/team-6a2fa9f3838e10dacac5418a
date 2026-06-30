@@ -92,7 +92,7 @@ export default function RaiseQuery() {
             }`}>
               {step > s ? <CheckCircle size={14} /> : s}
             </div>
-            <span className={`text-sm ${step === s ? 'text-slate-200 dark:text-slate-200 text-slate-700' : 'text-slate-600 dark:text-slate-600 text-slate-500'}`}>
+            <span className={`text-sm ${step === s ? 'dark:text-slate-200 text-slate-700' : 'text-slate-600 dark:text-slate-600 text-slate-500'}`}>
               {s === 1 ? 'Describe Issue' : s === 2 ? 'AI Review' : 'Posted'}
             </span>
             {s < 3 && <div className="w-8 h-px bg-dark-500 dark:bg-dark-500 bg-slate-300 mx-1" />}
@@ -123,7 +123,7 @@ export default function RaiseQuery() {
                     <Wand2 size={12} className="text-violet-400" />
                     <span className="text-xs text-violet-400 font-medium">AI suggested improvement</span>
                   </div>
-                  <p className="text-sm text-slate-200 dark:text-slate-200 text-slate-700">{refined}</p>
+                  <p className="text-sm dark:text-slate-200 text-slate-700">{refined}</p>
                   <div className="flex gap-2 mt-2">
                     <button onClick={() => { setForm(f => ({ ...f, title: refined })); setRefined(null) }}
                       className="text-xs bg-violet-600/20 hover:bg-violet-600/30 text-violet-300 px-3 py-1 rounded-lg transition-colors">
@@ -218,7 +218,7 @@ export default function RaiseQuery() {
                         <span className="badge-category">{q.category}</span>
                         <span className="text-xs text-slate-500">{q.similarity}% similar</span>
                       </div>
-                      <p className="text-sm text-slate-300 dark:text-slate-300 text-slate-700">{q.title}</p>
+                      <p className="text-sm dark:text-slate-300 text-slate-700">{q.title}</p>
                     </button>
                   ))}
                 </div>
@@ -238,7 +238,7 @@ export default function RaiseQuery() {
                     <div key={faq.id} className="p-3 bg-dark-700 rounded-xl border border-dark-500/50 related-faq-card">
                       {faq.sectionId && <span className="text-xs font-mono text-blue-400 mr-2">§{faq.sectionId}</span>}
                       <span className="badge-category mb-1.5 inline-block">{faq.category}</span>
-                      <p className="text-sm font-medium text-slate-200 dark:text-slate-200 text-slate-700">{faq.question}</p>
+                      <p className="text-sm font-medium dark:text-slate-200 text-slate-700">{faq.question}</p>
                       <p className="text-xs text-slate-500 dark:text-slate-500 text-slate-500 mt-1.5 line-clamp-2">{faq.answer}</p>
                     </div>
                   ))}

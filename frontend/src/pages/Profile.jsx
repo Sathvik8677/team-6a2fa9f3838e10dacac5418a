@@ -73,12 +73,12 @@ export default function Profile() {
           {/* Stats Grid */}
           <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
             {[
-              { label: 'Queries Raised', value: stats.queriesRaised, color: 'text-white' },
-              { label: 'Answers Given', value: stats.answersGiven, color: 'text-white' },
-              { label: 'Bookmarks', value: stats.bookmarks, color: 'text-white' },
-              { label: 'Reputation', value: stats.reputation, color: 'text-blue-400' },
+              { label: 'Queries Raised', value: stats.queriesRaised },
+              { label: 'Answers Given', value: stats.answersGiven },
+              { label: 'Bookmarks', value: stats.bookmarks },
+              { label: 'Reputation', value: stats.reputation },
             ].map(s => (
-              <div key={s.label} className="bg-dark-700/60 dark:bg-dark-700/60 rounded-xl p-4 text-center preference-card bg-slate-100/60">
+              <div key={s.label} className="card-dark p-4 text-center preference-card">
                 <p className="text-2xl font-bold dark:text-white text-slate-900">{s.value}</p>
                 <p className="text-xs dark:text-slate-500 text-slate-600 mt-1">{s.label}</p>
               </div>
