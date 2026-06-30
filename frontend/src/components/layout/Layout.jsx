@@ -8,17 +8,6 @@ import {
 } from 'lucide-react'
 import { useState } from 'react'
 
-const navItems = [
-  { to: '/home', icon: Home, label: 'Home', desc: 'AI Intelligence Hub' },
-  { to: '/ask', icon: Brain, label: 'Ask AI', desc: 'RAG-powered answers' },
-  { to: '/raise-query', icon: MessageSquarePlus, label: 'Raise Query', desc: 'Post a question' },
-  { to: '/discussions', icon: MessagesSquare, label: 'Discussions', desc: 'Community Q&A' },
-  { to: '/faq', icon: BookOpen, label: 'FAQ Browser', desc: 'Browse knowledge base' },
-  { to: '/analytics', icon: BarChart3, label: 'Analytics', desc: 'Confusion insights' },
-  { to: '/announcements', icon: Bell, label: 'Announcements', desc: 'Important notices' },
-  ...(user?.role === 'admin' ? [{ to: '/admin', icon: Shield, label: 'Admin Panel', desc: 'Manage platform' }] : []),
-]
-
 const bottomItems = [
   { to: '/profile', icon: User, label: 'Profile' },
   { to: '/settings', icon: Settings, label: 'Settings' },
@@ -30,6 +19,17 @@ export default function Layout() {
   const { sidebarOpen, toggleSidebar } = useUIStore()
   const navigate = useNavigate()
   const [mobileOpen, setMobileOpen] = useState(false)
+
+  const navItems = [
+    { to: '/home', icon: Home, label: 'Home', desc: 'AI Intelligence Hub' },
+    { to: '/ask', icon: Brain, label: 'Ask AI', desc: 'RAG-powered answers' },
+    { to: '/raise-query', icon: MessageSquarePlus, label: 'Raise Query', desc: 'Post a question' },
+    { to: '/discussions', icon: MessagesSquare, label: 'Discussions', desc: 'Community Q&A' },
+    { to: '/faq', icon: BookOpen, label: 'FAQ Browser', desc: 'Browse knowledge base' },
+    { to: '/analytics', icon: BarChart3, label: 'Analytics', desc: 'Confusion insights' },
+    { to: '/announcements', icon: Bell, label: 'Announcements', desc: 'Important notices' },
+    ...(user?.role === 'admin' ? [{ to: '/admin', icon: Shield, label: 'Admin Panel', desc: 'Manage platform' }] : []),
+  ]
 
   const handleLogout = () => { logout(); navigate('/login') }
 
