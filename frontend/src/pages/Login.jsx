@@ -19,9 +19,9 @@ function AuthLayout({ children, title, sub }) {
             <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-blue-600 to-violet-600 flex items-center justify-center shadow-lg shadow-blue-500/30">
               <Zap size={20} className="text-white" />
             </div>
-            <span className="font-bold text-white text-xl">VINS</span>
+            <span className="font-bold dark:text-white text-slate-900 text-xl">VINS</span>
           </Link>
-          <h1 className="text-2xl font-bold text-white mb-2">{title}</h1>
+          <h1 className="text-2xl font-bold dark:text-white text-slate-900 mb-2">{title}</h1>
           <p className="text-slate-400 text-sm">{sub}</p>
         </div>
         <div className="glass rounded-2xl p-8 shadow-2xl shadow-black/40">
