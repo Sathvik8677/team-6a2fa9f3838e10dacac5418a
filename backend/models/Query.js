@@ -50,6 +50,7 @@ const querySchema = new mongoose.Schema({
   isEscalated: { type: Boolean, default: false },
   escalatedAt: Date,
   resolvedAt: Date,
+  assignedMentor: { type: mongoose.Schema.Types.ObjectId, ref: 'User' },
   // Refined question from AI
   refinedTitle: String,
   searchVector: { type: Map, of: Number },

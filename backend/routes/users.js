@@ -124,7 +124,7 @@ router.patch('/:id/role', protect, restrictTo('admin'), async (req, res) => {
     }
     const user = await User.findByIdAndUpdate(req.params.id, { role }, { new: true }).select('-password');
     if (!user) return res.status(404).json({ error: 'User not found.' });
-    res.json({ message: 'Role updated.', user });
+    res.json(user);
   } catch (err) {
     res.status(400).json({ error: err.message });
   }
@@ -137,7 +137,7 @@ router.patch('/:id/status', protect, restrictTo('admin'), async (req, res) => {
     if (typeof isActive !== 'boolean') return res.status(400).json({ error: 'isActive must be a boolean.' });
     const user = await User.findByIdAndUpdate(req.params.id, { isActive }, { new: true }).select('-password');
     if (!user) return res.status(404).json({ error: 'User not found.' });
-    res.json({ message: isActive ? 'User activated.' : 'User deactivated.', user });
+    res.json(user);
   } catch (err) {
     res.status(400).json({ error: err.message });
   }
