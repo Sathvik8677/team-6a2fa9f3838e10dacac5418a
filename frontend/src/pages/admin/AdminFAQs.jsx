@@ -57,7 +57,7 @@ function FAQModal({ existing, onClose, onSave, categories }) {
       <div className="absolute inset-0 bg-black/70 backdrop-blur-sm" onClick={onClose} />
       <motion.div initial={{ opacity: 0, scale: 0.95 }} animate={{ opacity: 1, scale: 1 }}
         className="relative w-full max-w-2xl card-dark p-6 z-10 max-h-[90vh] overflow-y-auto">
-        <h2 className="text-lg font-bold text-white mb-5">{existing?._id ? 'Edit FAQ' : 'Create New FAQ'}</h2>
+        <h2 className="text-lg font-bold dark:text-white text-slate-900 mb-5">{existing?._id ? 'Edit FAQ' : 'Create New FAQ'}</h2>
         <form onSubmit={handleSubmit} className="space-y-4">
           <div className="grid grid-cols-2 gap-3">
             <div>
@@ -188,7 +188,7 @@ function FAQRow({ faq, onEdit, onDelete }) {
         <tr>
           <td colSpan={2} className="bg-dark-700/50 px-4 py-4">
             <div className="ml-4 border-l-2 border-blue-500/30 pl-4">
-              <p className="text-sm text-slate-300 leading-relaxed whitespace-pre-wrap">{faq.answer}</p>
+              <p className="text-sm dark:text-slate-300 text-slate-700 leading-relaxed whitespace-pre-wrap">{faq.answer}</p>
               <div className="flex gap-3 mt-3 text-xs text-slate-600">
                 <span>Source: <span className="capitalize text-slate-500">{faq.source}</span></span>
                 <span>·</span>
@@ -266,7 +266,7 @@ export default function AdminFAQs() {
               <BookOpen size={20} className="text-white" />
             </div>
             <div>
-              <h1 className="text-xl font-bold text-white">FAQ Management</h1>
+              <h1 className="text-xl font-bold dark:text-white text-slate-900">FAQ Management</h1>
               <p className="text-sm text-slate-500">{total} FAQs in knowledge base</p>
             </div>
           </div>
@@ -327,12 +327,12 @@ export default function AdminFAQs() {
               {loading ? (
                 Array(6).fill(0).map((_, i) => (
                   <tr key={i} className="border-b border-dark-500/30">
-                    <td className="px-4 py-3"><div className="h-10 bg-dark-700 rounded animate-pulse" /></td>
-                    <td className="px-4 py-3"><div className="h-8 bg-dark-700 rounded animate-pulse" /></td>
+                    <td className="px-4 py-3"><div className="h-10 skeleton rounded" /></td>
+                    <td className="px-4 py-3"><div className="h-8 skeleton rounded" /></td>
                   </tr>
                 ))
               ) : faqs.length === 0 ? (
-                <tr><td colSpan={2} className="px-4 py-16 text-center text-slate-500">No FAQs found</td></tr>
+                <tr><td colSpan={2} className="px-4 py-16 text-center dark:text-slate-400 text-slate-500">No FAQs found</td></tr>
               ) : (
                 faqs.map(faq => (
                   <FAQRow key={faq._id} faq={faq} onEdit={handleEdit} onDelete={handleDelete} />

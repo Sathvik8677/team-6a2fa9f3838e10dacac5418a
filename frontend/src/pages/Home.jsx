@@ -77,7 +77,7 @@ export default function Home() {
           <Sparkles size={14} />
           AI Intelligence Platform · Summership 2026
         </div>
-        <h1 className="text-4xl md:text-5xl font-bold text-white mb-4 tracking-tight">
+        <h1 className="text-4xl md:text-5xl font-bold dark:text-white text-slate-900 mb-4 tracking-tight">
           Welcome back, <span className="gradient-text">{user?.name?.split(' ')[0]}</span>
         </h1>
         <p className="text-slate-400 text-lg max-w-xl mx-auto mb-8">
@@ -163,7 +163,7 @@ export default function Home() {
                     #{i + 1}
                   </span>
                   <div className="min-w-0">
-                    <p className="text-sm text-slate-200 line-clamp-2 group-hover:text-white transition-colors">{q.title}</p>
+                    <p className="text-sm dark:text-slate-200 text-slate-700 line-clamp-2 group-hover:dark:text-white transition-colors">{q.title}</p>
                     <div className="flex items-center gap-2 mt-1.5">
                       <span className="badge-category">{q.category}</span>
                       <span className="text-xs text-slate-600">{q.views} views</span>
@@ -194,7 +194,7 @@ export default function Home() {
               onClick={() => navigate(`/faq?category=${cat.name}`)}
               className="card-dark card-hover p-4 text-left group">
               <div className="text-2xl mb-2">{cat.icon}</div>
-              <div className="font-medium text-slate-200 text-sm group-hover:text-white transition-colors">{cat.name}</div>
+              <div className="font-medium dark:text-slate-200 text-slate-700 text-sm group-hover:dark:text-white transition-colors">{cat.name}</div>
               <div className="text-xs text-slate-500 mt-0.5">{cat.desc}</div>
               <div className="text-xs text-slate-600 mt-2">{getCatCount(cat.name)} entries</div>
             </motion.button>
@@ -214,7 +214,7 @@ export default function Home() {
             <div key={i} className="p-4 flex items-start gap-3 hover:bg-dark-600/30 transition-colors">
               <AlertCircle size={14} className="text-amber-400 flex-shrink-0 mt-0.5" />
               <div>
-                <p className="text-sm font-medium text-slate-200">{m.text}</p>
+                <p className="text-sm font-medium dark:text-slate-200 text-slate-700">{m.text}</p>
                 <p className="text-xs text-slate-500 mt-0.5">{m.detail}</p>
               </div>
             </div>
@@ -231,7 +231,7 @@ export default function Home() {
             <Brain size={20} className="text-blue-400" />
           </div>
           <h3 className="font-semibold dark:text-white mb-2">Ask the AI Assistant</h3>
-          <p className="text-sm text-slate-400 mb-4">Get instant, contextual answers grounded in the official FAQ. Confidence-rated responses with source citations.</p>
+          <p className="text-sm dark:text-slate-400 text-slate-600 mb-4">Get instant, contextual answers grounded in the official FAQ. Confidence-rated responses with source citations.</p>
           <div className="flex items-center gap-1.5 text-blue-400 text-sm">Ask now <ArrowRight size={14} /></div>
         </button>
         <button onClick={() => navigate('/analytics')}
@@ -240,7 +240,7 @@ export default function Home() {
             <TrendingUp size={20} className="text-emerald-400" />
           </div>
           <h3 className="font-semibold dark:text-white mb-2">Confusion Analytics</h3>
-          <p className="text-sm text-slate-400 mb-4">See what topics are confusing 500+ interns. Real-time heatmaps, confidence trends, and FAQ gaps.</p>
+          <p className="text-sm dark:text-slate-400 text-slate-600 mb-4">See what topics are confusing 500+ interns. Real-time heatmaps, confidence trends, and FAQ gaps.</p>
           <div className="flex items-center gap-1.5 text-emerald-400 text-sm">View analytics <ArrowRight size={14} /></div>
         </button>
       </motion.div>

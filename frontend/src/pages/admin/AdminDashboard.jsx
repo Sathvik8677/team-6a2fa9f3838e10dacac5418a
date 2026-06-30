@@ -54,8 +54,8 @@ function StatCard({ icon: Icon, label, value, sub, color = 'blue', delay = 0, tr
       <div className="flex items-start justify-between">
         <div className="flex-1 min-w-0">
           <p className="text-xs text-slate-500 mb-1 font-medium uppercase tracking-wider">{label}</p>
-          <p className="text-3xl font-bold text-white dark:text-white">{value}</p>
-          {sub && <p className="text-xs text-slate-600 mt-1">{sub}</p>}
+          <p className="text-3xl font-bold dark:text-white text-slate-900">{value}</p>
+          {sub && <p className="text-xs dark:text-slate-500 text-slate-600 mt-1">{sub}</p>}
           {trend !== undefined && (
             <div className={`flex items-center gap-0.5 mt-1.5 text-xs ${trend >= 0 ? 'text-emerald-400' : 'text-rose-400'}`}>
               {trend >= 0 ? <ArrowUp size={11} /> : <ArrowDown size={11} />}
@@ -76,11 +76,11 @@ function StatCardSkeleton() {
     <div className="card-dark border-l-2 border-l-slate-600 p-5 h-28">
       <div className="flex items-start justify-between">
         <div className="flex-1">
-          <div className="h-3 w-20 bg-dark-600 rounded animate-pulse mb-3" />
-          <div className="h-7 w-16 bg-dark-600 rounded animate-pulse mb-2" />
-          <div className="h-3 w-28 bg-dark-600 rounded animate-pulse" />
+          <div className="h-3 w-20 skeleton rounded mb-3" />
+          <div className="h-7 w-16 skeleton rounded mb-2" />
+          <div className="h-3 w-28 skeleton rounded" />
         </div>
-        <div className="w-10 h-10 bg-dark-600 rounded-xl animate-pulse" />
+        <div className="w-10 h-10 skeleton rounded-xl" />
       </div>
     </div>
   )
@@ -89,11 +89,11 @@ function StatCardSkeleton() {
 function ChartSkeleton({ height = 220 }) {
   return (
     <div className="card-dark p-5">
-      <div className="h-4 w-40 bg-dark-600 rounded animate-pulse mb-5" />
+      <div className="h-4 w-40 skeleton rounded mb-5" />
       <div className="bg-dark-700 rounded-xl flex items-center justify-center" style={{ height }}>
         <div className="flex items-end gap-1.5 h-16 px-4">
           {[6, 9, 7, 10, 8, 12, 11].map((h, i) => (
-            <div key={i} className="w-4 bg-dark-500 rounded-t animate-pulse" style={{ height: `${h * 4}px`, animationDelay: `${i * 0.1}s` }} />
+            <div key={i} className="w-4 skeleton rounded-t" style={{ height: `${h * 4}px`, animationDelay: `${i * 0.1}s` }} />
           ))}
         </div>
       </div>
@@ -137,8 +137,8 @@ export default function AdminDashboard() {
     return (
       <div className="max-w-7xl mx-auto px-4 py-8 space-y-8">
         <div className="mb-2">
-          <div className="h-8 w-64 bg-dark-700 rounded animate-pulse mb-2" />
-          <div className="h-4 w-96 bg-dark-700 rounded animate-pulse" />
+          <div className="h-8 w-64 skeleton rounded mb-2" />
+          <div className="h-4 w-96 skeleton rounded" />
         </div>
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
           {Array(8).fill(0).map((_, i) => <StatCardSkeleton key={i} />)}
@@ -168,7 +168,7 @@ export default function AdminDashboard() {
             <BarChart3 size={20} className="text-white" />
           </div>
           <div>
-            <h1 className="text-xl font-bold text-white">Admin Dashboard</h1>
+            <h1 className="text-xl font-bold dark:text-white text-slate-900">Admin Dashboard</h1>
             <p className="text-sm text-slate-500">Platform overview and management</p>
           </div>
         </div>
@@ -204,7 +204,7 @@ export default function AdminDashboard() {
       {userStats && (
         <motion.div initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.4 }}
           className="card-dark p-5">
-          <h3 className="text-sm font-semibold text-white mb-5 flex items-center gap-2">
+          <h3 className="text-sm font-semibold dark:text-white text-slate-900 mb-5 flex items-center gap-2">
             <Users size={14} className="text-blue-400" /> User Distribution
           </h3>
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
@@ -215,7 +215,7 @@ export default function AdminDashboard() {
               { label: 'Active (7d)', value: userStats.activeUsers || 0, color: '#F59E0B' },
             ].map(item => (
               <div key={item.label} className="text-center p-4 bg-dark-700/60 rounded-xl">
-                <div className="text-2xl font-bold text-white mb-1">{item.value}</div>
+                <div className="text-2xl font-bold dark:text-white text-slate-900 mb-1">{item.value}</div>
                 <div className="w-full h-1.5 bg-dark-500 rounded-full mt-2 overflow-hidden">
                   <div className="h-full rounded-full transition-all duration-1000" style={{ width: `${userStats.totalUsers ? (item.value / userStats.totalUsers * 100) : 0}%`, background: item.color }} />
                 </div>
@@ -236,7 +236,7 @@ export default function AdminDashboard() {
                       {u.name?.charAt(0).toUpperCase()}
                     </div>
                     <div className="flex-1 min-w-0">
-                      <p className="text-sm text-slate-200 truncate">{u.name}</p>
+                      <p className="text-sm dark:text-slate-200 text-slate-700 truncate">{u.name}</p>
                       <p className="text-xs text-slate-600">{u.stats?.answersGiven || 0} answers</p>
                     </div>
                     <span className="badge-category">{u.role}</span>
@@ -252,7 +252,7 @@ export default function AdminDashboard() {
         {/* Daily Activity */}
         <motion.div initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.45 }}
           className="card-dark p-5">
-          <h3 className="text-sm font-semibold text-white mb-5 flex items-center gap-2">
+          <h3 className="text-sm font-semibold dark:text-white text-slate-900 mb-5 flex items-center gap-2">
             <TrendingUp size={14} className="text-emerald-400" /> Daily Activity (14 Days)
           </h3>
           {dailyActivity.length > 0 ? (
@@ -290,7 +290,7 @@ export default function AdminDashboard() {
         {/* Query Status Distribution */}
         <motion.div initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.5 }}
           className="card-dark p-5">
-          <h3 className="text-sm font-semibold text-white mb-5 flex items-center gap-2">
+          <h3 className="text-sm font-semibold dark:text-white text-slate-900 mb-5 flex items-center gap-2">
             <MessageSquare size={14} className="text-violet-400" /> Query Status Distribution
           </h3>
           {statusPie.length > 0 ? (
@@ -307,7 +307,7 @@ export default function AdminDashboard() {
                 {statusPie.map((s, i) => (
                   <div key={i} className="flex items-center gap-1.5 text-xs">
                     <div className="w-2.5 h-2.5 rounded-full" style={{ background: s.color }} />
-                    <span className="text-slate-400 capitalize">{s.name}</span>
+                    <span className="dark:text-slate-400 text-slate-600 capitalize">{s.name}</span>
                     <span className="text-slate-600">({s.value})</span>
                   </div>
                 ))}
@@ -326,7 +326,7 @@ export default function AdminDashboard() {
       {categoryData.length > 0 && (
         <motion.div initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.55 }}
           className="card-dark p-5">
-          <h3 className="text-sm font-semibold text-white mb-5 flex items-center gap-2">
+          <h3 className="text-sm font-semibold dark:text-white text-slate-900 mb-5 flex items-center gap-2">
             <BookOpen size={14} className="text-amber-400" /> Queries by Category
           </h3>
           <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.6 }}>

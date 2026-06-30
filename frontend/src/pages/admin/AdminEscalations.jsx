@@ -54,7 +54,7 @@ function EscalationRow({ query, onResolve, onAssign }) {
                   </span>
                 )}
               </div>
-              <p className="text-sm text-slate-200 line-clamp-1">{query.title}</p>
+              <p className="text-sm dark:text-slate-200 text-slate-700 line-clamp-1">{query.title}</p>
               <div className="flex items-center gap-3 mt-1.5 text-xs text-slate-600">
                 <span className="flex items-center gap-1">
                   <div className="w-4 h-4 rounded-full bg-gradient-to-br from-blue-500 to-violet-500 flex items-center justify-center text-white text-[8px] font-bold">
@@ -98,16 +98,16 @@ function EscalationRow({ query, onResolve, onAssign }) {
       </tr>
       {expanded && (
         <tr>
-          <td colSpan={2} className="bg-dark-700/50 px-4 py-4">
+          <td colSpan={2} className="bg-dark-700/50 dark:bg-dark-700/50 px-4 py-4 bg-slate-100/50">
             <div className="ml-4 border-l-2 border-rose-500/30 pl-4 space-y-3">
               <div>
                 <p className="text-xs text-slate-500 mb-1.5 font-medium">Query Content</p>
-                <p className="text-sm text-slate-300">{query.content}</p>
+                <p className="text-sm dark:text-slate-300 text-slate-700">{query.content}</p>
               </div>
               {query.aiAnswer && (
-                <div className="bg-dark-700/50 rounded-xl p-3">
+                <div className="bg-dark-700/50 dark:bg-dark-700/50 rounded-xl p-3 bg-slate-100/50">
                   <p className="text-xs text-slate-500 mb-1.5 font-medium">AI Answer</p>
-                  <p className="text-sm text-slate-300 line-clamp-3">{query.aiAnswer.content}</p>
+                  <p className="text-sm dark:text-slate-300 text-slate-700 line-clamp-3">{query.aiAnswer.content}</p>
                   <div className="flex gap-2 mt-2">
                     <span className="text-xs text-slate-600">Confidence: {query.aiAnswer.confidence || 'N/A'}</span>
                     {query.aiAnswer.confidenceScore && (
@@ -120,8 +120,8 @@ function EscalationRow({ query, onResolve, onAssign }) {
                 <div>
                   <p className="text-xs text-slate-500 mb-1.5 font-medium">{query.answers.length} Answer(s)</p>
                   {query.answers.slice(0, 2).map((a, i) => (
-                    <div key={i} className="bg-dark-700 rounded-xl p-3 mb-2">
-                      <p className="text-sm text-slate-300 line-clamp-2">{a.content}</p>
+                    <div key={i} className="bg-dark-700 dark:bg-dark-700 rounded-xl p-3 mb-2 bg-slate-200">
+                      <p className="text-sm dark:text-slate-300 text-slate-700 line-clamp-2">{a.content}</p>
                       <p className="text-xs text-slate-600 mt-1.5">
                         — {a.author?.name || 'Unknown'} ({a.authorType})
                       </p>
@@ -204,7 +204,7 @@ export default function AdminEscalations() {
             <AlertTriangle size={20} className="text-white" />
           </div>
           <div>
-            <h1 className="text-xl font-bold text-white">Query Moderation & Escalations</h1>
+            <h1 className="text-xl font-bold dark:text-white text-slate-900">Query Moderation & Escalations</h1>
             <p className="text-sm text-slate-500">Manage escalated queries and query moderation</p>
           </div>
         </div>
@@ -221,7 +221,7 @@ export default function AdminEscalations() {
             { label: 'Open Now', value: stats.openNow, color: 'blue' },
           ].map(s => (
             <div key={s.label} className="card-dark p-4 text-center">
-              <p className="text-2xl font-bold text-white">{s.value ?? 0}</p>
+              <p className="text-2xl font-bold dark:text-white text-slate-900">{s.value ?? 0}</p>
               <p className="text-xs text-slate-500 mt-1">{s.label}</p>
             </div>
           ))}
@@ -250,7 +250,7 @@ export default function AdminEscalations() {
         <div className="overflow-x-auto">
           <table className="w-full">
             <thead>
-              <tr className="border-b border-dark-500/50 bg-dark-700/50">
+              <tr className="border-b border-dark-500/50 bg-dark-700/50 dark:bg-dark-700/50">
                 <th className="px-4 py-3 text-left text-xs font-medium text-slate-500 uppercase tracking-wider">Query</th>
                 <th className="px-4 py-3 text-left text-xs font-medium text-slate-500 uppercase tracking-wider w-20">Actions</th>
               </tr>
@@ -259,8 +259,8 @@ export default function AdminEscalations() {
               {loading ? (
                 Array(5).fill(0).map((_, i) => (
                   <tr key={i} className="border-b border-dark-500/30">
-                    <td className="px-4 py-3"><div className="h-12 bg-dark-700 rounded animate-pulse" /></td>
-                    <td className="px-4 py-3"><div className="h-8 bg-dark-700 rounded animate-pulse" /></td>
+                    <td className="px-4 py-3"><div className="h-12 skeleton-dark-700 rounded" /></td>
+                    <td className="px-4 py-3"><div className="h-8 skeleton-dark-700 rounded" /></td>
                   </tr>
                 ))
               ) : escalated.length === 0 ? (

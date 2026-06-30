@@ -168,7 +168,7 @@ export default function AdminAnnouncements() {
               <Zap size={20} className="text-white" />
             </div>
             <div>
-              <h1 className="text-xl font-bold text-white">Announcement Management</h1>
+              <h1 className="text-xl font-bold dark:text-white text-slate-900">Announcement Management</h1>
               <p className="text-sm text-slate-500">{announcements.length} active announcements</p>
             </div>
           </div>
@@ -189,7 +189,7 @@ export default function AdminAnnouncements() {
             { label: 'Pinned', value: stats.pinnedCount || 0, color: 'amber' },
           ].map(s => (
             <div key={s.label} className="card-dark p-4 text-center">
-              <p className="text-2xl font-bold text-white">{s.value}</p>
+              <p className="text-2xl font-bold dark:text-white text-slate-900">{s.value}</p>
               <p className="text-xs text-slate-500 mt-1">{s.label}</p>
             </div>
           ))}
@@ -229,7 +229,7 @@ export default function AdminAnnouncements() {
                       {!ann.isActive && <span className="text-xs text-slate-600">🗑️ Deleted</span>}
                       {ann.targetAudience !== 'all' && <span className="badge-category">{ann.targetAudience} phase</span>}
                     </div>
-                    <h3 className="font-semibold text-white mb-1">{ann.title}</h3>
+                    <h3 className="font-semibold dark:text-white text-slate-900 mb-1">{ann.title}</h3>
                     <p className="text-sm text-slate-400 leading-relaxed">{ann.content}</p>
                     {ann.deadline && (
                       <p className="text-xs text-rose-400 mt-2 flex items-center gap-1">

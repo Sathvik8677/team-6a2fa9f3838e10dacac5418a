@@ -47,7 +47,7 @@ export default function Profile() {
       <div className="max-w-4xl mx-auto space-y-6">
         {/* Header */}
         <div>
-          <h1 className="text-3xl font-bold text-white mb-1">My Profile</h1>
+          <h1 className="text-3xl font-bold dark:text-white text-slate-900 mb-1">My Profile</h1>
           <p className="text-slate-500 text-sm">Manage your account information</p>
         </div>
 
@@ -59,7 +59,7 @@ export default function Profile() {
                 {user.name?.charAt(0).toUpperCase()}
               </div>
               <div>
-                <h2 className="text-xl font-bold text-white">{user.name}</h2>
+                <h2 className="text-xl font-bold dark:text-white text-slate-900">{user.name}</h2>
                 <p className="text-slate-400 text-sm capitalize">{user.role} · {user.phase} phase</p>
                 <span className="badge-category mt-1.5 inline-block">{user.college || 'No college set'}</span>
               </div>
@@ -78,9 +78,9 @@ export default function Profile() {
               { label: 'Bookmarks', value: stats.bookmarks, color: 'text-white' },
               { label: 'Reputation', value: stats.reputation, color: 'text-blue-400' },
             ].map(s => (
-              <div key={s.label} className="bg-dark-700/60 rounded-xl p-4 text-center preference-card">
-                <p className="text-2xl font-bold text-white">{s.value}</p>
-                <p className="text-xs text-slate-500 mt-1">{s.label}</p>
+              <div key={s.label} className="bg-dark-700/60 dark:bg-dark-700/60 rounded-xl p-4 text-center preference-card bg-slate-100/60">
+                <p className="text-2xl font-bold dark:text-white text-slate-900">{s.value}</p>
+                <p className="text-xs dark:text-slate-500 text-slate-600 mt-1">{s.label}</p>
               </div>
             ))}
           </div>
@@ -89,7 +89,7 @@ export default function Profile() {
         {/* Edit Form */}
         {isEditing && (
           <div className="card-dark p-6 md:p-8">
-            <h3 className="text-lg font-semibold text-white mb-5">Edit Profile</h3>
+            <h3 className="text-lg font-semibold dark:text-white text-slate-900 mb-5">Edit Profile</h3>
             <div className="space-y-4">
               {[
                 { name: 'name', label: 'Full Name', placeholder: 'Your full name' },
@@ -121,7 +121,7 @@ export default function Profile() {
               title: 'Account Details',
               items: [
                 { label: 'Email', value: user.email },
-                { label: 'Role', value: <span className="capitalize text-white">{user.role}</span> },
+                { label: 'Role', value: <span className="capitalize dark:text-white text-slate-900">{user.role}</span> },
                 { label: 'Member Since', value: new Date(user.createdAt).toLocaleDateString() },
               ]
             },

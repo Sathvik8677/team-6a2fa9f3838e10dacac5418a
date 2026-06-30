@@ -81,7 +81,7 @@ export function FAQBrowser() {
           <BookOpen size={20} className="text-white" />
         </div>
         <div>
-          <h1 className="text-xl font-bold text-white">FAQ Browser</h1>
+          <h1 className="text-xl font-bold dark:text-white text-slate-900">FAQ Browser</h1>
           <p className="text-sm text-slate-500">{total} entries in the knowledge base</p>
         </div>
       </div>
@@ -136,7 +136,7 @@ export function Announcements() {
           <ExternalLink size={20} className="text-white" />
         </div>
         <div>
-          <h1 className="text-xl font-bold text-white">Announcements</h1>
+          <h1 className="text-xl font-bold dark:text-white text-slate-900">Announcements</h1>
           <p className="text-sm text-slate-500">Important notices from the Vicharanashala team</p>
         </div>
       </div>
@@ -160,7 +160,7 @@ export function Announcements() {
                       <span className={`text-xs border px-2.5 py-0.5 rounded-full font-medium ${pc.class}`}>{pc.label}</span>
                       {ann.isPinned && <span className="text-xs text-amber-400">📌 Pinned</span>}
                     </div>
-                    <h3 className="font-semibold text-white mb-2">{ann.title}</h3>
+                    <h3 className="font-semibold dark:text-white text-slate-900 mb-2">{ann.title}</h3>
                     <p className="text-sm text-slate-400 leading-relaxed">{ann.content}</p>
                     {ann.deadline && (
                       <p className="text-xs text-rose-400 mt-2 flex items-center gap-1">
@@ -189,14 +189,14 @@ export function Profile() {
 
   return (
     <div className="max-w-2xl mx-auto px-4 py-8">
-      <h1 className="text-xl font-bold text-white mb-8">Profile</h1>
+      <h1 className="text-xl font-bold dark:text-white text-slate-900 mb-8">Profile</h1>
       <div className="card-dark p-6 mb-6">
         <div className="flex items-center gap-4 mb-6">
           <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-blue-500 to-violet-500 flex items-center justify-center text-white text-2xl font-bold">
             {user?.name?.charAt(0).toUpperCase()}
           </div>
           <div>
-            <h2 className="text-xl font-bold text-white">{user?.name}</h2>
+            <h2 className="text-xl font-bold dark:text-white text-slate-900">{user?.name}</h2>
             <p className="text-slate-400">{user?.email}</p>
             <div className="flex items-center gap-2 mt-1">
               <span className="badge-category capitalize">{user?.role}</span>
@@ -206,17 +206,17 @@ export function Profile() {
         </div>
         {user?.college && <p className="text-sm text-slate-500">🏛️ {user.college}</p>}
         <div className="grid grid-cols-3 gap-4 mt-5 pt-5 border-t border-dark-500/50">
-          <div className="text-center"><div className="text-2xl font-bold text-white">{user?.stats?.queriesRaised || 0}</div><div className="text-xs text-slate-500">Queries Raised</div></div>
-          <div className="text-center"><div className="text-2xl font-bold text-white">{user?.stats?.answersGiven || 0}</div><div className="text-xs text-slate-500">Answers Given</div></div>
-          <div className="text-center"><div className="text-2xl font-bold text-white">{user?.stats?.reputation || 0}</div><div className="text-xs text-slate-500">Reputation</div></div>
+          <div className="text-center"><div className="text-2xl font-bold dark:text-white text-slate-900">{user?.stats?.queriesRaised || 0}</div><div className="text-xs text-slate-500">Queries Raised</div></div>
+          <div className="text-center"><div className="text-2xl font-bold dark:text-white text-slate-900">{user?.stats?.answersGiven || 0}</div><div className="text-xs text-slate-500">Answers Given</div></div>
+          <div className="text-center"><div className="text-2xl font-bold dark:text-white text-slate-900">{user?.stats?.reputation || 0}</div><div className="text-xs text-slate-500">Reputation</div></div>
         </div>
       </div>
       {myQueries.length > 0 && (
         <div className="card-dark p-5">
-          <h3 className="font-semibold text-white mb-4">My Queries ({myQueries.length})</h3>
+          <h3 className="font-semibold dark:text-white text-slate-900 mb-4">My Queries ({myQueries.length})</h3>
           <div className="space-y-2">
             {myQueries.map(q => (
-              <div key={q._id} className="flex items-center justify-between p-3 bg-dark-700/60 rounded-xl faq-related-card">
+              <div key={q._id} className="flex items-center justify-between p-3 bg-dark-700/60 dark:bg-dark-700/60 rounded-xl faq-related-card bg-slate-100/60">
                 <span className="text-sm text-slate-300 truncate flex-1">{q.title}</span>
                 <span className="badge-category ml-2">{q.status}</span>
               </div>
@@ -242,24 +242,24 @@ export function Settings() {
 
   return (
     <div className="max-w-xl mx-auto px-4 py-8">
-      <h1 className="text-xl font-bold text-white mb-8">Settings</h1>
+      <h1 className="text-xl font-bold dark:text-white text-slate-900 mb-8">Settings</h1>
       <div className="space-y-4">
         <div className="card-dark p-5">
-          <h3 className="font-semibold text-white mb-4">Appearance</h3>
+          <h3 className="font-semibold dark:text-white text-slate-900 mb-4">Appearance</h3>
           <div className="flex items-center justify-between">
             <div><p className="text-sm text-slate-300">Theme</p><p className="text-xs text-slate-500">Current: {theme}</p></div>
             <button onClick={toggleTheme} className="btn-secondary text-sm">{theme === 'dark' ? '☀️ Light Mode' : '🌙 Dark Mode'}</button>
           </div>
         </div>
         <div className="card-dark p-5">
-          <h3 className="font-semibold text-white mb-4">AI Preferences</h3>
+          <h3 className="font-semibold dark:text-white text-slate-900 mb-4">AI Preferences</h3>
           <div className="space-y-4">
             <div>
               <label className="text-sm text-slate-300 mb-2 block">Default Explain Mode</label>
               <div className="flex gap-2">
                 {['beginner', 'intermediate', 'detailed'].map(m => (
                   <button key={m} onClick={() => setPrefs(p => ({ ...p, explainMode: m }))}
-                    className={`flex-1 py-2 rounded-xl text-sm border transition-all capitalize explain-mode-btn ${prefs.explainMode === m ? 'bg-blue-600/20 border-blue-500/30 text-blue-400' : 'border-dark-500/50 text-slate-500 bg-dark-700/60'}`}>
+                    className={`flex-1 py-2 rounded-xl text-sm border transition-all capitalize explain-mode-btn ${prefs.explainMode === m ? 'bg-blue-600/20 border-blue-500/30 text-blue-400' : 'border-dark-500/50 dark:text-slate-300 text-slate-600 bg-dark-700/60 dark:bg-dark-700/60 bg-slate-100/60'}`}>
                     {m}
                   </button>
                 ))}

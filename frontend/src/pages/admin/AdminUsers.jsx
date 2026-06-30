@@ -20,23 +20,23 @@ function UserRowSkeleton() {
     <tr className="border-b border-dark-500/30">
       <td className="px-4 py-3">
         <div className="flex items-center gap-3">
-          <div className="w-8 h-8 bg-dark-700 rounded-full animate-pulse flex-shrink-0" />
+          <div className="w-8 h-8 skeleton-dark-700 rounded-full flex-shrink-0" />
           <div className="space-y-1.5 flex-1">
-            <div className="h-4 w-28 bg-dark-700 rounded animate-pulse" />
-            <div className="h-3 w-40 bg-dark-700 rounded animate-pulse" />
+            <div className="h-4 w-28 skeleton-dark-700 rounded" />
+            <div className="h-3 w-40 skeleton-dark-700 rounded" />
           </div>
         </div>
       </td>
       <td className="px-4 py-3"><div className="h-6 w-16 bg-dark-700 rounded-full animate-pulse" /></td>
       <td className="px-4 py-3"><div className="h-6 w-14 bg-dark-700 rounded-full animate-pulse" /></td>
-      <td className="px-4 py-3 hidden md:table-cell"><div className="h-4 w-32 bg-dark-700 rounded animate-pulse" /></td>
-      <td className="px-4 py-3"><div className="h-4 w-20 bg-dark-700 rounded animate-pulse" /></td>
+      <td className="px-4 py-3 hidden md:table-cell"><div className="h-4 w-32 skeleton-dark-700 rounded" /></td>
+      <td className="px-4 py-3"><div className="h-4 w-20 skeleton-dark-700 rounded" /></td>
       <td className="px-4 py-3"><div className="h-5 w-14 bg-dark-700 rounded-full animate-pulse" /></td>
       <td className="px-4 py-3">
         <div className="flex gap-1">
-          <div className="h-7 w-7 bg-dark-700 rounded-lg animate-pulse" />
-          <div className="h-7 w-7 bg-dark-700 rounded-lg animate-pulse" />
-          <div className="h-7 w-7 bg-dark-700 rounded-lg animate-pulse" />
+          <div className="h-7 w-7 skeleton-dark-700 rounded-lg" />
+          <div className="h-7 w-7 skeleton-dark-700 rounded-lg" />
+          <div className="h-7 w-7 skeleton-dark-700 rounded-lg" />
         </div>
       </td>
     </tr>
@@ -61,20 +61,20 @@ function ExpandedUserRow({ user, onClose }) {
 
   return (
     <tr>
-      <td colSpan={7} className="bg-dark-700/50 px-4 py-4">
+      <td colSpan={7} className="bg-dark-700/50 dark:bg-dark-700/50 px-4 py-4 bg-slate-100/50">
         <div className="flex items-start gap-4">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-3 flex-1">
             <div className="bg-dark-700 rounded-xl p-3">
               <p className="text-xs text-slate-500 mb-1">Queries Raised</p>
-              <p className="text-lg font-bold text-white">{user.stats?.queriesRaised || 0}</p>
+              <p className="text-lg font-bold dark:text-white text-slate-900">{user.stats?.queriesRaised || 0}</p>
             </div>
             <div className="bg-dark-700 rounded-xl p-3">
               <p className="text-xs text-slate-500 mb-1">Answers Given</p>
-              <p className="text-lg font-bold text-white">{user.stats?.answersGiven || 0}</p>
+              <p className="text-lg font-bold dark:text-white text-slate-900">{user.stats?.answersGiven || 0}</p>
             </div>
             <div className="bg-dark-700 rounded-xl p-3">
               <p className="text-xs text-slate-500 mb-1">Reputation</p>
-              <p className="text-lg font-bold text-white">{user.stats?.reputation || 0}</p>
+              <p className="text-lg font-bold dark:text-white text-slate-900">{user.stats?.reputation || 0}</p>
             </div>
             <div className="bg-dark-700 rounded-xl p-3">
               <p className="text-xs text-slate-500 mb-1">Last Seen</p>
@@ -182,7 +182,7 @@ export default function AdminUsers() {
             <Users size={20} className="text-white" />
           </div>
           <div>
-            <h1 className="text-xl font-bold text-white">User Management</h1>
+            <h1 className="text-xl font-bold dark:text-white text-slate-900">User Management</h1>
             <p className="text-sm text-slate-500">{total} users total</p>
           </div>
         </div>
@@ -268,7 +268,7 @@ export default function AdminUsers() {
                             {user.name?.charAt(0).toUpperCase()}
                           </div>
                           <div className="min-w-0">
-                            <p className="text-sm font-medium text-slate-200 truncate">{user.name}</p>
+                            <p className="text-sm font-medium dark:text-slate-200 text-slate-700 truncate">{user.name}</p>
                             <p className="text-xs text-slate-600 truncate">{user.email}</p>
                           </div>
                         </div>
