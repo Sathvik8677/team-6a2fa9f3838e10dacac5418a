@@ -36,7 +36,7 @@ function AIAnswerCard({ aiAnswer }) {
               <Brain size={15} className="text-white" />
             </div>
             <div>
-              <div className="text-sm font-semibold text-white flex items-center gap-2">
+              <div className="text-sm font-semibold dark:text-white text-slate-900 flex items-center gap-2">
                 VINS AI
                 <span className="text-xs bg-blue-500/15 border border-blue-500/20 text-blue-400 dark:text-blue-400 text-blue-600 px-2 py-0.5 rounded-full">
                   RAG-Grounded
