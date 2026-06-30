@@ -175,7 +175,9 @@ export default function AdminEscalations() {
           : api.get('/queries/admin/all', { params: { page: String(page), limit: String(limit) } }).catch(() => ({ data: { queries: [] } })),
         api.get('/queries/admin/escalation-stats').catch(() => ({ data: {} })),
       ])
-      setEscalated(filter === 'escalated' ? escRes.data : (escRes.data.queries || escRes.data))
+      setEscalated(filter === 'escalated'
+        ? (Array.isArray(escRes.data) ? escRes.data : escRes.data.queries || [])
+        : (escRes.data.queries || []))
       setStats(statsRes.data)
     } catch (e) {}
     setLoading(false)
