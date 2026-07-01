@@ -24,6 +24,7 @@ export default function Layout() {
   const navItems = [
     { to: '/home', icon: Home, label: 'Home', desc: 'AI Intelligence Hub' },
     { to: '/ask', icon: Brain, label: 'Ask AI', desc: 'RAG-powered answers' },
+    { to: '/upload-photos', icon: ImageIcon, label: 'Upload Photos', desc: 'Ask with screenshots' },
     { to: '/raise-query', icon: MessageSquarePlus, label: 'Raise Query', desc: 'Post a question' },
     { to: '/discussions', icon: MessagesSquare, label: 'Discussions', desc: 'Community Q&A' },
     { to: '/faq', icon: BookOpen, label: 'FAQ Browser', desc: 'Browse knowledge base' },

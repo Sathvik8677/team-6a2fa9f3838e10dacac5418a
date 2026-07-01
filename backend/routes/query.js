@@ -260,32 +260,37 @@ router.patch('/:id/escalate', protect, async (req, res) => {
 });
 
 // POST: /api/queries/feedback
-// Automatically routes bad AI answers to the Answer Queue
-router.post('/feedback', async (req, res) => {
+// isHelpful: false + escalationReason  → create Query + escalate it with reason/comments
+router.post('/feedback', protect, async (req, res) => {
   try {
-    const { studentId, question, aiAnswer, isHelpful } = req.body;
+    const { question, aiAnswer, isHelpful, escalationReason, escalationComments } = req.body;
 
-    if (!isHelpful) {
-      // The AI hallucinated. Route to the human Answer Queue.
-      const newQuery = new Query({
-        author: studentId || null, // Matches your existing schema setup
-        question: question,
-        aiDraftAnswer: aiAnswer,
-        status: 'open', // 'open' usually signifies it needs human attention
-        source: 'AI_Hallucination_Flag',
-        skipCount: 0,
-        isStalled: false
-      });
-
-      await newQuery.save();
-      return res.status(201).json({ message: "Bad AI answer routed to human mentors." });
+    if (isHelpful) {
+      return res.status(200).json({ message: 'Positive feedback recorded.' });
     }
 
-    return res.status(200).json({ message: "Positive feedback recorded." });
+    if (!question) {
+      return res.status(400).json({ error: 'Question is required to escalate.' });
+    }
 
+    // Create a Query from the failed AI answer
+    const newQuery = new Query({
+      title: question,
+      content: aiAnswer || question,
+      category: 'General',
+      author: req.user._id,
+      status: 'escalated',
+      isEscalated: true,
+      escalatedAt: new Date(),
+      escalatedReason: escalationReason || null,
+      escalationComments: escalationComments || null
+    });
+
+    await newQuery.save();
+    return res.status(201).json({ message: 'Escalated! A mentor will review it.', query: newQuery });
   } catch (error) {
-    console.error("Feedback error:", error);
-    return res.status(500).json({ error: "Failed to process feedback." });
+    console.error('Feedback error:', error);
+    return res.status(500).json({ error: 'Failed to process feedback.' });
   }
 });
 
