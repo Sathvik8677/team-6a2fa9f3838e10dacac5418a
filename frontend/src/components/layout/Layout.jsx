@@ -4,7 +4,7 @@ import { useAuthStore, useThemeStore, useUIStore } from '../../store'
 import {
   Brain, Home, MessageSquarePlus, MessagesSquare, BarChart3,
   Bell, User, Settings, BookOpen, LogOut, Menu, Sun, Moon,
-  ChevronRight, Zap, Shield, ExternalLink, Image as ImageIcon
+  ChevronRight, Zap, Shield, ExternalLink, Image as ImageIcon, Star
 } from 'lucide-react'
 import { useState, useEffect, useRef } from 'react'
 import api from '../../utils/api'
@@ -21,7 +21,7 @@ export default function Layout() {
   const navigate = useNavigate()
   const [mobileOpen, setMobileOpen] = useState(false)
 
-  const navItems = [
+  const baseNavItems = [
     { to: '/home', icon: Home, label: 'Home', desc: 'AI Intelligence Hub' },
     { to: '/ask', icon: Brain, label: 'Ask AI', desc: 'RAG-powered answers' },
     { to: '/upload-photos', icon: ImageIcon, label: 'Upload Photos', desc: 'Ask with screenshots' },
@@ -31,6 +31,14 @@ export default function Layout() {
     { to: '/analytics', icon: BarChart3, label: 'Analytics', desc: 'Confusion insights' },
     { to: '/announcements', icon: Bell, label: 'Announcements', desc: 'Important notices' },
   ]
+
+  const mentorNavItems = [
+    { to: '/answer-queue', icon: Star, label: 'Answer Queue', desc: 'Answer student questions' },
+  ]
+
+  const navItems = user?.role === 'mentor' || user?.role === 'admin'
+    ? [...baseNavItems, ...mentorNavItems]
+    : baseNavItems
 
   const handleLogout = () => { logout(); navigate('/login') }
 
